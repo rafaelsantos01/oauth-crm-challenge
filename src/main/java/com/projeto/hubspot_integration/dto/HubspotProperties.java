@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Getter
 @Setter
-public class HubspotDTO {
+public class HubspotProperties {
 
     private String clientId;
     private String clientSecret;
     private String scopes;
     private String redirectUri;
-    private String url;
-
+    private String authUrl;
+    private String tokenUrl;
 }

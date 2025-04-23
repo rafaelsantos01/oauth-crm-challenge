@@ -1,8 +1,10 @@
 package com.projeto.hubspot_integration.service;
 
+import java.net.MalformedURLException;
+
 public interface IAuthorizationService {
 
-    void getAuthorizationUrl();
+    String getAuthorizationUrl() throws MalformedURLException;
 
-    void getAccessToken();
+    void getAccessToken(String code) ;
 }
