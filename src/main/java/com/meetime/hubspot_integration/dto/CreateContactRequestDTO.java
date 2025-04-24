@@ -19,4 +19,6 @@ public class CreateContactRequestDTO {
 
     @Email
     private String email;
+
+    private String phone;
 }

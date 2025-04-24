@@ -21,6 +21,9 @@ public class ContactProperties {
     @JsonProperty("firstname")
     private String firstName;
 
+    @JsonProperty("phone")
+    private String phone;
+
     @JsonProperty("lastname")
     private String lastName;
 

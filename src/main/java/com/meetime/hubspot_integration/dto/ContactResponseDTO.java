@@ -18,4 +18,6 @@ public class ContactResponseDTO {
     private String lastName;
 
     private String createdAt;
+
+    private String phone;
 }

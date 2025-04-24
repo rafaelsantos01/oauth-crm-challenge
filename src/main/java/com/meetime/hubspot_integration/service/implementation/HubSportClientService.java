@@ -48,6 +48,8 @@ public class HubSportClientService implements IHubSpotClientService {
         properties.put("firstname", dto.getFirstName());
         properties.put("lastname", dto.getLastName());
         properties.put("email", dto.getEmail());
+        properties.put("phone", dto.getPhone());
+
 
         Map<String, Object> payload = new HashMap<>();
         payload.put("properties", properties);
@@ -61,6 +63,7 @@ public class HubSportClientService implements IHubSpotClientService {
                 .lastName(contact.getProperties().getLastName())
                 .email(contact.getProperties().getEmail())
                 .createdAt(contact.getProperties().getCreatedAt())
+                .phone(contact.getProperties().getPhone())
                 .build();
     }
 
