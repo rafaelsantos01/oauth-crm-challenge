@@ -203,3 +203,20 @@ Você pode rodar este projeto de duas formas: usando **Docker** ou diretamente n
    Na sua IDE, execute a classe principal do projeto.
 
 
+# 🛜 Usando o Ngrok
+
+## 🛠️ Instalação do Ngrok
+1. **Baixar o Ngrok**  
+   Acesse [ngrok.com](https://ngrok.com/download) e siga as instruções de instalação para o seu sistema operacional.
+2. **Autenticar o Ngrok**  
+   Após a instalação, você precisará autenticar o Ngrok com sua conta. Execute o seguinte comando no terminal:
+   ```bash
+   ngrok authtoken SEU_TOKEN
+   ```
+   Substitua `SEU_TOKEN` pelo token que você encontra na sua conta do Ngrok.
+3. **Iniciar o Ngrok**  
+   Para expor sua aplicação Spring Boot, execute o seguinte comando:
+   ```bash
+   ngrok http 8080
+   ```
+
