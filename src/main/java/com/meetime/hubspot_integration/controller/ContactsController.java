@@ -33,5 +33,12 @@ public class ContactsController {
         return new ResponseEntity<>(contact, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{contactId}")
+    @ResponseBody
+    public ResponseEntity<Void> deleteContact(@PathVariable String contactId) {
+        hubspotClientService.deleteContact(contactId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 }

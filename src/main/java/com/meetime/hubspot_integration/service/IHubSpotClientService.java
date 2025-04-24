@@ -10,4 +10,6 @@ public interface IHubSpotClientService {
     List<ContactResponseDTO> listAllContacts();
 
     ContactResponseDTO newContact(CreateContactRequestDTO dto);
+
+    void deleteContact(String contactId);
 }

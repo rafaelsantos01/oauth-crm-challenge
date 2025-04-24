@@ -7,9 +7,7 @@ import com.meetime.hubspot_integration.client.dto.ResponseAccessToken;
 import feign.FeignException;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(
         contextId = "hubspotContext",
@@ -26,4 +24,7 @@ public interface IHubspotClient {
 
     @GetMapping("/crm/v3/objects/contacts")
     ContactsResponse getAllContacts() throws FeignException;
+
+    @DeleteMapping("/crm/v3/objects/contacts/{contactId}")
+    void deleteContact(@PathVariable("contactId") String contactId) throws FeignException;
 }
