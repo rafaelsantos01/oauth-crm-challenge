@@ -20,6 +20,8 @@ public class HubspotProperties {
 
     private String redirectUri;
 
+    private String baseUrlApi;
+
     private String baseUrl;
 
     private String authorizeUrl;

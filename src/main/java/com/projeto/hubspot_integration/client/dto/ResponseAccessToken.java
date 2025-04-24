@@ -19,5 +19,4 @@ public class ResponseAccessToken {
 
     private String token_type;
 
-    private String scope;
 }

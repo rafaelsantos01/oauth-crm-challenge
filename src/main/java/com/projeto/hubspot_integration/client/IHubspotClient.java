@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(
         contextId = "hubspotContext",
         name = "hubspotClient",
-        url = "${hubspot.base-url}",
+        url = "${hubspot.base-url-api}",
         configuration = HubspotClientConfiguration.class)
 public interface IHubspotClient {
 

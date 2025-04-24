@@ -5,6 +5,7 @@ import com.projeto.hubspot_integration.client.dto.ResponseAccessToken;
 import com.projeto.hubspot_integration.dto.HubspotProperties;
 import com.projeto.hubspot_integration.service.IAuthorizationService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -12,6 +13,7 @@ import org.springframework.util.MultiValueMap;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class AuthorizationServiceImpl implements IAuthorizationService {
@@ -30,6 +32,7 @@ public class AuthorizationServiceImpl implements IAuthorizationService {
                 "&scope=" + scope +
                 "&redirect_uri=" + hubspotProperties.getRedirectUri());
 
+        log.info("Authorization URL: {}", url.toString());
         return url.toString();
     }
 
@@ -43,7 +46,6 @@ public class AuthorizationServiceImpl implements IAuthorizationService {
         request.add("code", code);
 
         ResponseAccessToken authentication = hubspotClient.getAuthentication(request);
-
-        System.out.println("Authentication: " + authentication.toString());
+        log.info("Authentication: {}", authentication);
     }
 }
