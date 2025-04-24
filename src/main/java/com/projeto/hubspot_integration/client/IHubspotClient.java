@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.List;
-
 @FeignClient(
         contextId = "hubspotContext",
         name = "hubspotClient",
@@ -26,6 +24,6 @@ public interface IHubspotClient {
     @PostMapping("/crm/v3/objects/contacts")
     ContactResult createContact(@RequestBody Object request) throws FeignException;
 
-    @GetMapping("/crm/v3/objects/contacts?limit=10")
+    @GetMapping("/crm/v3/objects/contacts")
     ContactsResponse getAllContacts() throws FeignException;
 }
