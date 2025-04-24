@@ -39,7 +39,7 @@ GET /api/v1/oauth/callback
 Recebe o callback do HubSpot e gera o token.
 ````
 
-## 👥 Contatos
+### 👥 Lista de contatos
 
 ````
 GET /api/v1/contacts
@@ -57,16 +57,22 @@ Lista todos os contatos da conta HubSpot vinculada.
 ````
 
 
-## Corpo da requisição:
+### 👤 Cria um novo contato:
 ````
     POST /api/v1/contacts
-    Cria um novo contato
+    Cria um novo contato na conta HubSpot vinculada.
     {
         "firstName": "João",
         "lastName": "Silva",
         "email": "joao.silva@example.com"
     }
 ````
+
+### ❌ Deleta um Contato:
+````
+    DELETE /api/v1/contacts/{id}
+    Deleta um contato a partir do ID
+``````
 
 
 
