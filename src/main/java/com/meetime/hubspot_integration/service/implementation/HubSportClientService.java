@@ -33,6 +33,7 @@ public class HubSportClientService implements IHubSpotClientService {
                     .firstName(contact.getProperties().getFirstName())
                     .lastName(contact.getProperties().getLastName())
                     .email(contact.getProperties().getEmail())
+                    .phone(contact.getProperties().getPhone())
                     .createdAt(contact.getProperties().getCreatedAt())
                     .build();
 

@@ -1,5 +1,6 @@
 package com.meetime.hubspot_integration.client.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,12 +12,16 @@ import lombok.ToString;
 @ToString
 public class ResponseAccessToken {
 
-    private String access_token;
+    @JsonProperty("access_token")
+    private String accessToken;
 
-    private String refresh_token;
+    @JsonProperty("refresh_token")
+    private String refreshToken;
 
-    private Integer expires_in;
+    @JsonProperty("expires_in")
+    private Integer expiresIn;
 
-    private String token_type;
+    @JsonProperty("token_type")
+    private String tokenType;
 
 }

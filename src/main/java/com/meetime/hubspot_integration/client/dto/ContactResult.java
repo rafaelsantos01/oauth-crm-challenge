@@ -10,6 +10,8 @@ import lombok.ToString;
 @Builder
 @ToString
 public class ContactResult {
+
     private String id;
+
     private ContactProperties properties;
 }

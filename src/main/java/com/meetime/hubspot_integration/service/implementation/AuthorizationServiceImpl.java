@@ -35,7 +35,7 @@ public class AuthorizationServiceImpl implements IAuthorizationService {
                 "&scope=" + scope +
                 "&redirect_uri=" + hubspotProperties.getRedirectUri());
 
-        log.info("Authorization URL: {}", url.toString());
+        log.info("Authorization URL: {}", url);
         return url.toString();
     }
 
@@ -49,10 +49,10 @@ public class AuthorizationServiceImpl implements IAuthorizationService {
         request.add("code", code);
 
         ResponseAccessToken authentication = hubspotClient.getAuthentication(request);
-        tokenProvider.setToken(authentication.getAccess_token());
-        tokenProvider.setRefreshToken(authentication.getRefresh_token());
-        tokenProvider.setExpires_in(authentication.getExpires_in());
+        tokenProvider.setToken(authentication.getAccessToken());
+        tokenProvider.setRefreshToken(authentication.getRefreshToken());
+        tokenProvider.setExpires_in(authentication.getExpiresIn());
 
-        log.info("Authentication: {}", authentication);
+        log.info("Authentication successful: {}", authentication.getAccessToken());
     }
 }

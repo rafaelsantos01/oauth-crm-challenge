@@ -85,5 +85,65 @@ Spring Cloud OpenFeign
 Lombok
 ````
 
+# 🚀 Integração com HubSpot
 
+Este guia mostra como configurar seu aplicativo no HubSpot e integrá-lo com seu projeto Spring Boot para autenticação e recebimento de webhooks.
+
+---
+
+## 🧾 Pré-requisitos
+
+- Conta no [HubSpot](https://developers.hubspot.com/)
+- Aplicação Spring Boot rodando localmente (ex: `http://localhost:8080`)
+- [Ngrok](https://ngrok.com/) instalado e configurado
+
+---
+
+## 🔧 Passo a passo
+
+1. **Crie uma conta no HubSpot**  
+   Se ainda não tiver, acesse [HubSpot Developer](https://developers.hubspot.com/) e crie uma conta.
+
+2. **Acesse o painel de desenvolvedor**  
+   Vá até a seção **"Aplicativos"** e clique em **"Criar aplicativo"** (ou selecione um existente).
+
+3. **Configurar autenticação OAuth**
+    - Vá para a aba **"Autenticação"**
+    - Copie o **Client ID** e o **Client Secret**
+    - Adicione essas credenciais no seu projeto (em variáveis de ambiente ou no arquivo `application.properties`):
+
+      ```properties
+      hubspot.client-id=SEU_CLIENT_ID
+      hubspot.client-secret=SEU_CLIENT_SECRET
+      ```
+
+4. **Adicionar URL de redirecionamento**
+    - Na aba **"URLs de redirecionamento"**, adicione:
+      ```
+      http://localhost:8080/api/v1/oauth/callback
+      ```
+
+5. **Selecionar escopos (Scopes)**
+    - `oauth`
+    - `crm.objects.contacts.write`
+    - `crm.objects.contacts.read`
+
+6. **Salvar alterações**
+
+7. **Configurar Webhook**
+    - Vá até a aba **"Webhooks"**
+    - Adicione a URL pública gerada pelo ngrok com o endpoint que você criará na aplicação:
+      ```
+      https://exemplo.ngrok-free.app/webhook
+      ```
+
+8. **Criar assinatura de eventos**
+    - Clique em **"Criar assinatura"**
+    - Tipo de objeto: **Contato**
+    - Evento monitorado: **Criado**
+
+9. **Salvar e testar**  
+   Agora sua integração está pronta! Crie um contato no HubSpot e verifique se o evento chega corretamente no seu endpoint `/webhook`.
+
+---
 
