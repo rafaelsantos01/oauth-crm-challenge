@@ -10,7 +10,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -42,9 +44,24 @@ public class HubSportClientService implements IHubSpotClientService {
 
     @Override
     public ContactResponseDTO newContact(CreateContactRequestDTO dto) {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("firstname", dto.getFirstName());
+        properties.put("lastname", dto.getLastName());
+        properties.put("email", dto.getEmail());
 
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("properties", properties);
 
-        return null;
+        ContactResult contact = hubspotClient.createContact(payload);
+
+        return ContactResponseDTO
+                .builder()
+                .id(contact.getId())
+                .firstName(contact.getProperties().getFirstName())
+                .lastName(contact.getProperties().getLastName())
+                .email(contact.getProperties().getEmail())
+                .createdAt(contact.getProperties().getCreatedAt())
+                .build();
     }
 
 

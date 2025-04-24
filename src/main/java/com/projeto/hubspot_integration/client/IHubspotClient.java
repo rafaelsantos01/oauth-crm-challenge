@@ -24,7 +24,7 @@ public interface IHubspotClient {
     ResponseAccessToken getAuthentication(@RequestBody MultiValueMap<String, String> request) throws FeignException;
 
     @PostMapping("/crm/v3/objects/contacts")
-    Object createContact(@RequestBody Object request) throws FeignException;
+    ContactResult createContact(@RequestBody Object request) throws FeignException;
 
     @GetMapping("/crm/v3/objects/contacts?limit=10")
     ContactsResponse getAllContacts() throws FeignException;
