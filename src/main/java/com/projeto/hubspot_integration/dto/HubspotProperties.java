@@ -13,9 +13,14 @@ import org.springframework.context.annotation.Configuration;
 public class HubspotProperties {
 
     private String clientId;
+
     private String clientSecret;
+
     private String scopes;
+
     private String redirectUri;
-    private String authUrl;
-    private String tokenUrl;
+
+    private String baseUrl;
+
+    private String authorizeUrl;
 }

@@ -23,8 +23,9 @@ public class AuthorizationServiceImpl implements IAuthorizationService {
     @Override
     public String getAuthorizationUrl() throws MalformedURLException {
         String scope = hubspotProperties.getScopes().replace(",", "%20");
+        String urlBase  = hubspotProperties.getBaseUrl() + hubspotProperties.getAuthorizeUrl();
 
-        URL url = new URL(hubspotProperties.getAuthUrl() +
+        URL url = new URL(urlBase +
                 "?client_id=" + hubspotProperties.getClientId() +
                 "&scope=" + scope +
                 "&redirect_uri=" + hubspotProperties.getRedirectUri());

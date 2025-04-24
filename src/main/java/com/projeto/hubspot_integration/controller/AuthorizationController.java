@@ -25,6 +25,7 @@ public class AuthorizationController {
 
     @GetMapping("/callback")
     public void handleTokenAccess(@RequestParam String code){
+
         authorizationService.getAccessToken(code);
     }
 }

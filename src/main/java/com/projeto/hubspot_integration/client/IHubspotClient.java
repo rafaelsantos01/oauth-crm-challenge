@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(
         contextId = "hubspotContext",
         name = "hubspotClient",
-        url = "${hubspot.token-url}",
+        url = "${hubspot.base-url}",
         configuration = HubspotClientConfiguration.class)
 public interface IHubspotClient {
 
-    @PostMapping()
+    @PostMapping("/oauth/v1/token")
     ResponseAccessToken getAuthentication(@RequestBody MultiValueMap<String, String> request) throws FeignException;
 }
