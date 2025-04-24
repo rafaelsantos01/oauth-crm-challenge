@@ -4,7 +4,7 @@ import com.meetime.hubspot_integration.client.IHubspotClient;
 import com.meetime.hubspot_integration.client.dto.ResponseAccessToken;
 import com.meetime.hubspot_integration.dto.HubspotProperties;
 import com.meetime.hubspot_integration.service.IAuthorizationService;
-import com.meetime.hubspot_integration.token.HubspotTokenProvider;
+import com.meetime.hubspot_integration.token.TokenProvider;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class AuthorizationServiceImpl implements IAuthorizationService {
 
     private final IHubspotClient hubspotClient;
 
-    private final HubspotTokenProvider tokenProvider;
+    private final TokenProvider tokenProvider;
 
     @Override
     public String getAuthorizationUrl() throws MalformedURLException {

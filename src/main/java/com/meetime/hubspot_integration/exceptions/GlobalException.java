@@ -3,6 +3,7 @@ package com.meetime.hubspot_integration.exceptions;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalException {
+
 
     @ExceptionHandler(FeignException.Unauthorized.class)
     public ResponseEntity<Map<String, Object>> handleFeignUnauthorized(FeignException.Unauthorized ex) {
@@ -71,6 +73,16 @@ public class GlobalException {
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(AuthorizationDeniedException.class)
+    public ResponseEntity<Map<String, Object>> handleAuthorization(Exception ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("status", HttpStatus.UNAUTHORIZED.value());
+        body.put("error", "Unauthorized");
+        body.put("message", "Acesso não autorizado.");
+        body.put("details", ex.getMessage());
+        body.put("timestamp", OffsetDateTime.now());
 
+        return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
+    }
 
 }

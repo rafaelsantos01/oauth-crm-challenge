@@ -1,5 +1,5 @@
 package com.meetime.hubspot_integration.client.config;
-import com.meetime.hubspot_integration.token.HubspotTokenProvider;
+import com.meetime.hubspot_integration.token.TokenProvider;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class HubspotClientRequestInterceptor implements RequestInterceptor {
 
-    private final HubspotTokenProvider tokenProvider;
+    private final TokenProvider tokenProvider;
 
     @Override
     public void apply(RequestTemplate template) {

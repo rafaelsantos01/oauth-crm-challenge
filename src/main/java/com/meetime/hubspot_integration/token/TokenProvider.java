@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @Component
 @Setter
-public class HubspotTokenProvider {
+public class TokenProvider {
 
     private String token;
     private String refreshToken;

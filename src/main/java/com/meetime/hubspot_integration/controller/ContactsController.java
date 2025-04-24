@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ContactsController {
 
     @GetMapping
     @ResponseBody
+    @PreAuthorize("@permissionFilter.hasToken()")
     public ResponseEntity<List<ContactResponseDTO>> listAllContacts() {
         List<ContactResponseDTO> contacts = hubspotClientService.listAllContacts();
         return new ResponseEntity<>(contacts, HttpStatus.OK);
@@ -27,6 +29,7 @@ public class ContactsController {
 
     @PostMapping
     @ResponseBody
+    @PreAuthorize("@permissionFilter.hasToken()")
     public ResponseEntity<ContactResponseDTO> newContact(@RequestBody @Valid CreateContactRequestDTO dto) {
         ContactResponseDTO contact = hubspotClientService.newContact(dto);
 
@@ -35,6 +38,7 @@ public class ContactsController {
 
     @DeleteMapping("/{contactId}")
     @ResponseBody
+    @PreAuthorize("@permissionFilter.hasToken()")
     public ResponseEntity<Void> deleteContact(@PathVariable String contactId) {
         hubspotClientService.deleteContact(contactId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

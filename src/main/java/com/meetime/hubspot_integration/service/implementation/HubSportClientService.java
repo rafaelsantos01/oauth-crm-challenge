@@ -6,6 +6,7 @@ import com.meetime.hubspot_integration.client.dto.ContactsResponse;
 import com.meetime.hubspot_integration.dto.ContactResponseDTO;
 import com.meetime.hubspot_integration.dto.CreateContactRequestDTO;
 import com.meetime.hubspot_integration.service.IHubSpotClientService;
+import com.meetime.hubspot_integration.token.TokenProvider;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ import java.util.Map;
 public class HubSportClientService implements IHubSpotClientService {
 
     private final IHubspotClient hubspotClient;
+
+    private final TokenProvider tokenProvider;
 
     @Override
     public List<ContactResponseDTO> listAllContacts() {
