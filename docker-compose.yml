@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    container_name: java_app
+    restart: always
+    environment:
+      SERVER_PORT: 8080
+      CLIENT_ID_HUBSPOT:
+      CLIENT_SECRET_HUBSPOT:
+      REDIRECT_URI_HUBSPOT: http://localhost:8080/api/v1/oauth/callback
+      SCOPE_HUBSPOT: oauth,crm.objects.contacts.write,crm.objects.contacts.read
+      BASE_URL_API: https://api.hubapi.com
+      BASE_URL: https://app.hubspot.com
+    volumes:
+      - ./target/hubspot-integration-0.0.1-SNAPSHOT.jar:/app.jar
+    entrypoint: [ "java", "-jar", "/app.jar" ]
+    ports:
+      - "8080:8080"
