@@ -11,6 +11,7 @@ Este projeto tem como objetivo integrar uma aplicação Spring Boot com a API do
 com.projeto.hubspot_integration
 ├── client        # Interfaces Feign para comunicação com APIs externas
 ├── controller    # Endpoints REST da aplicação
+├── security      # Classe de configuração de segurança e filtros
 ├── dto           # Objetos de transferência de dados
 ├── exceptions    # Manipulação de erros e exceções customizadas
 ├── service       # Camada de lógica de negócio
