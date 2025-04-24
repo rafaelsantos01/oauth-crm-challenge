@@ -4,6 +4,7 @@ import com.projeto.hubspot_integration.client.IHubspotClient;
 import com.projeto.hubspot_integration.client.dto.ResponseAccessToken;
 import com.projeto.hubspot_integration.dto.HubspotProperties;
 import com.projeto.hubspot_integration.service.IAuthorizationService;
+import com.projeto.hubspot_integration.token.HubspotTokenProvider;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class AuthorizationServiceImpl implements IAuthorizationService {
     private final HubspotProperties hubspotProperties;
 
     private final IHubspotClient hubspotClient;
+
+    private final HubspotTokenProvider tokenProvider;
 
     @Override
     public String getAuthorizationUrl() throws MalformedURLException {
@@ -46,6 +49,10 @@ public class AuthorizationServiceImpl implements IAuthorizationService {
         request.add("code", code);
 
         ResponseAccessToken authentication = hubspotClient.getAuthentication(request);
+        tokenProvider.setToken(authentication.getAccess_token());
+        tokenProvider.setRefreshToken(authentication.getRefresh_token());
+        tokenProvider.setExpires_in(authentication.getExpires_in());
+
         log.info("Authentication: {}", authentication);
     }
 }
