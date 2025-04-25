@@ -167,8 +167,7 @@ Você pode rodar este projeto de duas formas: usando **Docker** ou diretamente n
 
 1. **Clonar o repositório**
     ```bash
-    git clone https://github.com/rafaelsantos01/meetime.git
-    cd meetime
+    git clone https://github.com/rafaelsantos01/oauth-crm-challenge
     ```
 
 2. **Configurar variáveis de ambiente**  
@@ -191,8 +190,7 @@ Você pode rodar este projeto de duas formas: usando **Docker** ou diretamente n
 
 1. **Clonar o repositório**
     ```bash
-    git clone https://github.com/rafaelsantos01/meetime.git
-    cd meetime
+    git clone https://github.com/rafaelsantos01/oauth-crm-challenge
     ```
 
 2. **Configurar variáveis de ambiente**  
