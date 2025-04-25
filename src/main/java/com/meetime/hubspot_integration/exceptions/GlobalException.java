@@ -1,5 +1,7 @@
 package com.meetime.hubspot_integration.exceptions;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,6 +85,34 @@ public class GlobalException {
         body.put("timestamp", OffsetDateTime.now());
 
         return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(FeignException.Conflict.class)
+    public ResponseEntity<Map<String, Object>> handleFeignConflict(FeignException.Conflict ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("status", HttpStatus.CONFLICT.value());
+        body.put("error", "Conflict");
+
+        String message = "Ocorreu um erro inesperado.";
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(ex.contentUTF8());
+
+            if (root.isArray() && !root.isEmpty()) {
+                message = root.get(0).get("message").asText();
+            } else if (root.has("message")) {
+                message = root.get("message").asText();
+            }
+
+        } catch (Exception e) {
+            message = "Erro ao processar mensagem de erro da API externa.";
+        }
+
+        body.put("message", message);
+        body.put("details", ex.contentUTF8());
+        body.put("timestamp", OffsetDateTime.now());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
     }
 
 }
